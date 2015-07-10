@@ -36,3 +36,9 @@ exports.answer = function(req, res){
 		}	
 	});
 };
+
+
+//GET /quizes/:id
+exports.search = function(req, res){
+	models.Quiz.findAll({where: ["pregunta like ?", textSearch]});	
+};
