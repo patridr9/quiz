@@ -16,7 +16,7 @@ exports.load = function(req, res, next, quizId) {
 
 // Función para obtener el string a buscar en las preguntas
 function convertirTextoABuscar(str) {
-	str = str.replace(/ /g, '%');
+	str.replace(/\s*/, '%');
 	str = '%' + str + '%';	
 	return str;              
 }
