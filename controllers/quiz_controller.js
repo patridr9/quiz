@@ -13,10 +13,9 @@ exports.load = function(req, res, next, quizId) {
 		}).catch(function(error){ next(error);});
 };
 
-
 // Función para obtener el string a buscar en las preguntas
 function convertirTextoABuscar(str) {
-	str.replace(/\s*/, '%');
+	str = str.replace(/ /g, '%');
 	str = '%' + str + '%';	
 	return str;              
 }
@@ -48,7 +47,7 @@ exports.show = function(req, res){
 exports.answer = function(req, res){
 	models.Quiz.find(req.params.quizId).then(function(quiz) {
 		var resultado = 'Incorrecto';
-		if (req.query.respuesta === quiz.respuesta){
+		if (req.query.respuesta.toLowerCase() === quiz.respuesta.toLowerCase()){
 			resultado = 'Correcto';	
 		} 
 		res.render('quizes/answer', {quiz: quiz, respuesta:  resultado });		
